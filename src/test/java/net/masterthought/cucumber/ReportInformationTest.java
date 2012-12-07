@@ -2,6 +2,7 @@ package net.masterthought.cucumber;
 
 import net.masterthought.cucumber.json.Artifact;
 import net.masterthought.cucumber.json.Feature;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,6 +25,7 @@ public class ReportInformationTest {
 
     @Before
     public void setUpReportInformation() throws IOException, URISyntaxException {
+        ConfigurationOptions.resetToDefaults();
         ConfigurationOptions.setSkippedFailsBuild(false);
         ConfigurationOptions.setUndefinedFailsBuild(false);
         List<String> jsonReports = new ArrayList<String>();
@@ -32,6 +34,11 @@ public class ReportInformationTest {
         jsonReports.add(new File(ReportInformationTest.class.getClassLoader().getResource("net/masterthought/cucumber/project2.json").toURI()).getAbsolutePath());
         reportParser = new ReportParser(jsonReports);
         reportInformation = new ReportInformation(reportParser.getFeatures());
+    }
+
+    @After
+    public void cleanup() {
+        ConfigurationOptions.resetToDefaults();
     }
 
     @Test

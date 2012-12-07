@@ -6,6 +6,7 @@ import net.masterthought.cucumber.json.Step;
 import net.masterthought.cucumber.util.Util;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,6 +27,7 @@ public class StepTest {
 
     @Before
     public void setUpJsonReports() throws IOException {
+        ConfigurationOptions.resetToDefaults();
         List<String> jsonReports = new ArrayList<String>();
         jsonReports.add(getAbsolutePathFromResource("net/masterthought/cucumber/project1.json"));
         ReportParser reportParser = new ReportParser(jsonReports);
@@ -36,6 +38,11 @@ public class StepTest {
         passingStep = passingFeature.getElements()[0].getSteps()[0];
         failingStep = failingFeature.getElements()[0].getSteps()[5];
         skippedStep = failingFeature.getElements()[0].getSteps()[6];
+    }
+
+    @After
+    public void cleanup() {
+        ConfigurationOptions.resetToDefaults();
     }
 
     @Test

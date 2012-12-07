@@ -16,6 +16,13 @@ public class ConfigurationOptions {
         throw new AssertionError();
     }
 
+    public static void resetToDefaults() {
+        skippedFailsBuildValue = false;
+        undefinedFailsBuildValue = false;
+        artifactsEnabledValue = false;
+        artifactConfiguration = null;
+    }
+
     public static void setSkippedFailsBuild(boolean skippedFailsBuild) {
         skippedFailsBuildValue = skippedFailsBuild;
     }
