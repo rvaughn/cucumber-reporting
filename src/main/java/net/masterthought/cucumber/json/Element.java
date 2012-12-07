@@ -11,8 +11,8 @@ public class Element {
     private String name;
     private String description;
     private String keyword;
-    private Step[] steps;
-    private Tag[] tags;
+    private Step[] steps = new Step[0];
+    private Tag[] tags = new Tag[0];
 
     public Element() {
 
